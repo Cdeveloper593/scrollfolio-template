@@ -75,11 +75,6 @@ export function mountScene(root: HTMLElement) {
   let timestamp = performance.now();
   let routeTarget = location.hash.slice(1);
   const count = get('#count');
-  const distinkt = get('#distinkt');
-  const panel = get('#distinkt .panel');
-  const video = get<HTMLVideoElement>('#dkvid');
-  const cue = get('#dkfig');
-  const seek = get<HTMLInputElement>('#dkseek');
   const burger = get('#burger');
   let menuOpen = false;
   splitHeadings(root);
@@ -149,15 +144,11 @@ export function mountScene(root: HTMLElement) {
       return tick;
     }));
     get('#spacer').style.height = `${scroll + height}px`;
-    const distinktScene = scenes.find(({ section }) => section.id === 'dk-stop')!;
-    const inner = get('.dk-in');
-    inner.style.transform = '';
-    if (inner.offsetHeight > height - (mobile ? 126 : 160)) inner.style.transform = `scale(${(height - (mobile ? 126 : 160)) / inner.offsetHeight})`;
 
     go = (target, animated) => {
-      const scene = scenes.find(({ section }) => section.id === (target === 'distinkt' ? 'dk-stop' : target));
+      const scene = scenes.find(({ section }) => section.id === target);
       if (!scene) return;
-      const top = scene.start + (target === 'distinkt' ? scene.hold * .45 : target === 'hero' ? 0 : 2);
+      const top = scene.start + (target === 'hero' ? 0 : 2);
       window.scrollTo({ top, behavior: 'instant' });
       if (!animated) { position = top; previous = -1; render(); }
     };
@@ -256,18 +247,6 @@ export function mountScene(root: HTMLElement) {
       get('#hudn').textContent = String(markerNumbers[marker]).padStart(2, '0');
       get('#hudl').textContent = markers[marker].label;
       [...ticks.children].forEach((tick, index) => tick.classList.toggle('on', markers[index].start <= progress + 2));
-      const incoming = smooth((progress - distinktScene.start + .75 * height) / (1.05 * height));
-      const outgoing = smooth((progress - distinktScene.start - distinktScene.hold + 1.05 * height) / height);
-      const shown = incoming > 0 && outgoing < 1;
-      distinkt.style.visibility = shown ? 'visible' : 'hidden';
-      distinkt.style.pointerEvents = incoming > .98 && outgoing < .2 ? 'auto' : 'none';
-      if (shown) {
-        panel.style.clipPath = `circle(${Math.hypot(width, height)*.62*incoming+1}px at 50% 50%)`;
-        panel.style.transform = `perspective(1200px) translateY(${-outgoing*height*.04}px) rotateX(${outgoing*14}deg) scale(${1-.84*outgoing})`;
-        panel.style.opacity = String(1-smooth((outgoing-.7)/.3));
-        distinkt.querySelectorAll<HTMLElement>('.fly').forEach((element, index) => element.style.setProperty('--q', String(1-smooth((progress-distinktScene.start-.05*height)/(.95*height)*1.6-index*.13))));
-      }
-      if (!video.paused && (incoming < .9 || outgoing > .85)) video.pause();
     };
     previous = -1;
     if (routeTarget) go(routeTarget, false);
@@ -289,10 +268,6 @@ export function mountScene(root: HTMLElement) {
     doc.style.overflow = open ? 'hidden' : '';
     burger.setAttribute('aria-expanded', String(open));
   }
-  function toggleVideo() {
-    if (video.paused) { video.preload = 'auto'; void video.play().catch(() => {}); }
-    else video.pause();
-  }
   root.addEventListener('click', (event) => {
     const control = (event.target as Element).closest<HTMLElement>('[data-go],button');
     if (!control) return;
@@ -304,31 +279,10 @@ export function mountScene(root: HTMLElement) {
       case 'copy': navigator.clipboard.writeText('hello@alexcarter.studio').then(() => {
         control.textContent = 'Copied'; setTimeout(() => { control.textContent = 'Copy email'; }, 1800);
       }).catch(() => get('#mail').focus()); break;
-      case 'thumbs': get('#thumbtt').textContent = 'You remember Flash!'; break;
-      case 'thumbsdn': get('#thumbtt').textContent = 'Ah, a youngster. Ask your parents about Skip Intro buttons.'; break;
-      case 'dkbig':
-      case 'dkpp': toggleVideo(); break;
-      case 'dksnd':
-        video.muted = !video.muted;
-        control.setAttribute('aria-pressed', String(!video.muted));
-        control.setAttribute('aria-label', video.muted ? 'Unmute' : 'Mute');
-        break;
+      case 'thumbs': get('#thumbtt').textContent = 'You love the web too!'; break;
+      case 'thumbsdn': get('#thumbtt').textContent = 'Fair enough — the design sections are further down.'; break;
     }
   }, options);
-  const time = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
-  function updateVideo() {
-    cue.classList.toggle('playing', !video.paused);
-    get('#dkpp').setAttribute('aria-label', video.paused ? 'Play' : 'Pause');
-    if (Number.isFinite(video.duration)) {
-      seek.value = String(video.currentTime / video.duration * 1000);
-      seek.style.setProperty('--pct', `${video.currentTime / video.duration * 100}%`);
-      get('#dktime').textContent = `${time(video.currentTime)} / ${time(video.duration)}`;
-    }
-  }
-  for (const event of ['play', 'pause', 'timeupdate', 'loadedmetadata']) video.addEventListener(event, updateVideo, options);
-  video.addEventListener('click', toggleVideo, options);
-  video.addEventListener('ended', () => { video.currentTime = 0; updateVideo(); }, options);
-  seek.addEventListener('input', () => { if (Number.isFinite(video.duration)) video.currentTime = Number(seek.value) / 1000 * video.duration; }, options);
   window.addEventListener('keydown', (event) => { if (event.key === 'Escape' && menuOpen) { toggleMenu(false); burger.focus(); } }, options);
   window.addEventListener('resize', () => { if (innerWidth !== lastWidth || !matchMedia('(pointer: coarse)').matches) measure(); }, options);
   window.addEventListener('hashchange', () => go(location.hash.slice(1), false), options);

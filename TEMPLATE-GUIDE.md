@@ -8,8 +8,7 @@ start year, site URL, social links. The site title/description come from here.
 `src/components/sites/portfolio/content.json` → `home`
 One HTML string, in page order: header/menu, hero, about, stats
 (120+ projects), journey milestones (2015 / 2017 / 2021 / 2025),
-"Beyond design" interests, services heading, work heading, the Spotlight
-panel, and the contact finale (email, socials, footer links, © line).
+"Beyond design" interests, services heading, work heading, and the contact finale (email, socials, footer links, © line).
 Edit the text between tags; keep classes and `data-*` attributes as they are —
 the scroll engine positions elements by them.
 
@@ -37,14 +36,14 @@ Each is `{title, html}`. The URL is the key: rename a key to rename the route
 
 ## 6. Images & video to replace first
 - `public/sites/portfolio/img/pose0.webp` … `pose5.webp` — the about-section
-  cutouts (transparent, tall). Replace with your own cutout photos, same names.
+  art frames (transparent, tall, abstract shapes). Replace with your own cutout photos or art, same names.
 - `public/sites/portfolio/img/ht-can.webp`, `ht-ih.webp` — "Beyond design" cutouts.
-- `public/sites/portfolio/img/spotlight-preview.mp4` — Spotlight panel video.
+- `public/sites/portfolio/img/preview-gradient.mp4` — sample gallery video used by the Echo Live project.
 - Project covers/galleries (see §4).
 
 ## 7. Colors & type
 `public/sites/portfolio/scene.css` `:root` — `--bg`, `--ink`, `--line`
-(the blue line/accent), `--orange` (Spotlight panel), fonts.
+(the blue line/accent), `--orange` (accent), fonts.
 `public/sites/portfolio/info.css` — info-page styling.
 
 ## 8. Deploy

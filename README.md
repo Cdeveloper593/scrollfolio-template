@@ -5,8 +5,8 @@ web creatives, videographers, illustrators, motion artists and studios.
 
 Instead of a normal scrolling page, visitors fly through your work along a
 drawn line: hero → about → stats → journey → services → selected work →
-spotlight (your product / lead magnet) → contact, with a numbered progress
-rail (01 Home → 09 Contact) tracking the whole trip. Project pages open as
+contact, with a numbered progress
+rail (01 Home → 08 Contact) tracking the whole trip. Project pages open as
 full-screen panels with a sticky info column and a scrolling gallery.
 
 Built with Next.js 16, React 19, TypeScript and Tailwind CSS v4.
@@ -31,8 +31,8 @@ controls it. In short:
    projects and info pages (`/services`, `/faq`, `/for-businesses`, `/for-agencies`).
 3. `public/sites/portfolio/projects/<slug>/` — project cover + gallery images
    (the included ones are generated placeholders — drop in your real work).
-4. `public/sites/portfolio/img/` — portrait cutouts (`pose0–5.webp`), spray-can
-   and palette cutouts, and the spotlight preview video.
+4. `public/sites/portfolio/img/` — abstract art frames (`pose0–5.webp`), spray-can
+   and palette cutouts, and a sample gallery video.
 
 The demo persona is **Alex Carter**, a fictional creative freelancer, and all
 six demo projects (Lumen Café, North Peak, Pulse Studio, Atlas Journal, Bloom
@@ -54,5 +54,4 @@ safe to publish as-is and easy to replace.
   design — it projects every section from scroll position. Edit copy and
   images freely; change section structure only if you are comfortable in code.
 - Fonts in `public/sites/portfolio/gfonts/` are Google Fonts (open license).
-  The display font files in `public/sites/portfolio/fonts/` are Bebas-style —
-  verify your font license or swap in free Bebas Neue before commercial use.
+  The display font is Bebas Neue (free, open license) in `public/sites/portfolio/fonts/`.

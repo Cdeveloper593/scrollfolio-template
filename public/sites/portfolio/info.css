@@ -21,7 +21,7 @@
 }
 
 
-@font-face{font-family:"BebasProBold";src:url(/sites/portfolio/fonts/bebas-neue-pro-semiexp-bold.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"BebasProBold";src:url(/sites/portfolio/fonts/bebas-neue-regular.ttf) format("truetype");font-display:swap}
 :root{--bg:#ECEAE2;--ink:#121413;--muted:#5E6360;--hair:#D3D0C6;--line:#2234E0}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Geist,ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
