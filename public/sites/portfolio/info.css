@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/sites/portfolio/gfonts/ba5542d3_gyBhhwUxId8gMGYQMKR3pzfaWI_RnOM4nQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/sites/portfolio/gfonts/c3de3f75_gyBhhwUxId8gMGYQMKR3pzfaWI_RruM4nQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/sites/portfolio/gfonts/e49821a9_or3yQ6H-1_WfwkMZI_qYPLs1a-t7PU0AbeE9KJ5T.ttf) format('truetype');
+}
+
+
+@font-face{font-family:"BebasProBold";src:url(/sites/portfolio/fonts/bebas-neue-pro-semiexp-bold.woff2) format("woff2");font-display:swap}
+:root{--bg:#ECEAE2;--ink:#121413;--muted:#5E6360;--hair:#D3D0C6;--line:#2234E0}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Geist,ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}a:hover{color:var(--line)}
+.bar{display:flex;justify-content:space-between;align-items:center;padding:22px max(20px,4vw)}
+.bar a{font-family:BebasProBold,Impact,sans-serif;font-size:22px;letter-spacing:.02em;text-decoration:none;text-transform:uppercase}
+.bar nav{display:flex;gap:22px;font:12px Geist Mono,monospace;letter-spacing:.14em;text-transform:uppercase}.bar nav a{font:inherit}
+main{max-width:860px;margin:0 auto;padding:6vh max(20px,4vw) 12vh}
+.k{font:12px Geist Mono,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1{text-transform:uppercase;font-family:BebasProBold,Impact,sans-serif;font-weight:400;font-size:clamp(56px,9vw,120px);line-height:.9;margin:.2em 0 .35em}
+h2{text-transform:uppercase;font-family:BebasProBold,Impact,sans-serif;font-weight:400;font-size:clamp(32px,4.4vw,52px);line-height:1;margin:2em 0 .5em}
+h3{font-size:19px;margin:1.4em 0 .3em}
+.lede{font-size:clamp(19px,2vw,23px);line-height:1.5;max-width:44ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px 40px}
+.grid ul{margin:.4em 0 0;padding-left:1.1em;color:var(--muted)}
+ol.steps{list-style:none;padding:0;margin:0;display:grid;gap:18px;counter-reset:s}
+ol.steps li{border-top:1px solid var(--hair);padding-top:16px;counter-increment:s}
+ol.steps li b{display:block;font-family:BebasProBold,Impact,sans-serif;font-weight:400;font-size:28px}
+ol.steps li b:before{content:"0" counter(s) "  ";color:var(--line)}
+.tags{display:flex;flex-wrap:wrap;gap:10px;padding:0;list-style:none}
+.tags li{border:1px solid var(--hair);border-radius:999px;padding:6px 14px;font-size:14px}
+details{border-top:1px solid var(--hair);padding:18px 0}details:last-of-type{border-bottom:1px solid var(--hair)}
+summary{cursor:pointer;font-weight:500;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}summary:after{content:"+";color:var(--line);font-size:24px;line-height:1}
+details[open] summary:after{content:"−"}details p{margin:.7em 0 0;color:#2b2e2c;max-width:62ch}
+.cta{display:inline-block;margin-top:2.4em;background:var(--ink);color:var(--bg);text-decoration:none;padding:16px 26px;border-radius:999px;font:12px Geist Mono,monospace;letter-spacing:.14em;text-transform:uppercase}
+.cta:hover{background:var(--line);color:#fff}
+footer{max-width:860px;margin:0 auto;padding:0 max(20px,4vw) 6vh;font:12px Geist Mono,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:22px;flex-wrap:wrap}
+
