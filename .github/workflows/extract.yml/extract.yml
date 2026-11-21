@@ -1,0 +1,31 @@
+name: Extract template
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract zip to repo root
+        run: |
+          unzip -o scrollfolio-template.zip
+          rm -f scrollfolio-template.zip
+          rm -rf __MACOSX
+          if [ -d scrollfolio-template ]; then
+            shopt -s dotglob
+            mv scrollfolio-template/* .
+            rmdir scrollfolio-template
+          fi
+          echo "--- extracted files ---"
+          find . -path ./.git -prune -o -type f -print | sort
+      - name: Commit extracted files
+        run: |
+          rm -rf .github/workflows/extract.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git status --short
+          git commit -m "Extract ScrollFolio template files" || echo "nothing to commit"
+          git push
