@@ -19,7 +19,7 @@ const cards = content.projects.map((project, index) => {
     <a href="/projects/${project.slug}" class="card ${side}${project.coverAr ? ' full' : ''}" style="width:clamp(${widths[0]}px,${width}vw,${widths[1]}px)">
     <span class="fig" style="--ar:${project.coverAr ?? ratio}"><img src="${project.cover}" alt="${project.title} project" decoding="async"></span>
     <span class="meta"><span class="mono">0${index + 1} / 06</span></span><span class="d ${index % 2 ? 't2' : 'b7'}">${project.title}</span>
-    <span class="small">${project.category}</span><span class="mono open">View project<i aria-hidden="true"></i></span></a></div></section>`;
+    <span class="mono open">View project<i aria-hidden="true"></i></span></a></div></section>`;
 }).join('');
 const services = content.services.map(([name], index) => {
   const [x, y, depth, mx, my] = servicePositions[index];
